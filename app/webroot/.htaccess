@@ -1,0 +1,17 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On # リライトを有効にする。
+
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [L]
+
+#RewriteCond %{REQUEST_FILENAME} -s [OR] # リクエストしたパスにファイルサイズが0以上のファイルがある。(次の条件とOR)
+#RewriteCond %{REQUEST_FILENAME} -l [OR] # リクエストしたパスにシンボリックリンクがある。(次の条件とOR)
+#RewriteCond %{REQUEST_FILENAME} -d # リクエストしたパスにディレクトリーがある。
+#RewriteRule ^.*$ - [NC,L] # ここまでの条件のいずれかに一致した場合はリライトを行わない。
+
+#RewriteCond %{REQUEST_URI}::$1 ^(/.+)(.+)::\2$ # (後述)
+#RewriteRule ^(.*) - [E=BASE:%1] # 環境変数"BASE"にマッチした文字列をセット。
+#RewriteRule ^(.*)$ %{ENV:BASE}index.php [NC,L] # 
+</IfModule>

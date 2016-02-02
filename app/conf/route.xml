@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes>
+
+	<route>
+		<path>/sample</path>
+	        <controller>SampleController</controller>
+		<method>index</method>
+	</route>
+	<route>
+		<path>/samplea/</path>
+	        <controller>SampleController</controller>
+		<method>index</method>
+	</route>
+
+	<route>
+		<path>/test/:test_id</path>
+		<controller>SampleController</controller>
+		<method>index</method>
+		<slug name="test_id" value="*" />
+	</route>
+
+	<route>
+		<path>/test/:test_id/content</path>
+		<controller>SampleController</controller>
+		<method>index</method>
+		<slug name="test_id" value="*" />
+	</route>
+</routes>

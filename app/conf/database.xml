@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databases>
+	<database enviroment="dev">
+		<id>master</id>
+		<host>localhost</host>
+		<name>mysql</name>
+		<port>3306</port>
+		<username>root</username>
+		<password></password>
+	</database>
+	<database enviroment="dev">
+		<id>slave</id>
+                <host>localhost</host>
+                <name>mysql</name>
+                <port>3306</port>
+                <username>root</username>
+                <password></password>
+	</database>
+</databases>
+
