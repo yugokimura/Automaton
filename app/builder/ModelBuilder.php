@@ -150,15 +150,15 @@ $model->update = <<<EOL
 EOL;
 $model->updateByPrimary = <<<EOL
         public function updateByPrimary(\$entityQuery, \$entityOut = null) {
-                \$sth = \$ths->pdo->prepare('update ' . \$this->table . ' set $updateCols  where $wheresPrimary');
+                \$sth = \$this->pdo->prepare('update ' . \$this->table . ' set $updateCols  where $wheresPrimary');
 		$binds
 
 		return \$sth->execute();
         }
 EOL;
-$model->replaceByPrimary = <<<EOL
-	public function replaceByPrimary(\$entityQuery, \$entityOut = null) {
-		\$sth = \$ths->pdo->prepare('replace into ' . \$this->table . ' ($insertCols) values ($insertValues)  where $wheresPrimary');
+$model->replaceInto = <<<EOL
+	public function replaceInto(\$entityQuery, \$entityOut = null) {
+		\$sth = \$this->pdo->prepare('replace into ' . \$this->table . ' ($insertCols) values ($insertValues)');
 		$binds
 
 		return \$sth->execute();
@@ -185,6 +185,12 @@ $model->deleteByPrimary = <<<EOL
                 return \$sth->execute();
         }
 EOL;
+
+$mode->delete = <<<EOL
+	public function delete(\$entityQuery, \$entityOut = null) {
+		return \$this->deleteByPrimary(\$entityQuery, \$entityOut);
+	}
+EOL;
 		##### END Primary処理
 		}
 
@@ -210,10 +216,11 @@ $model->insertBy
 
 $model->updateByPrimary
 
-$model->replaceByPrimary
+$model->replaceInto
 
 $model->deleteByPrimary 
 
+$model->delete
 }
 ?>
 EOL;
